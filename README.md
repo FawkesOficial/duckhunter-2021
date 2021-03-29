@@ -31,7 +31,7 @@ ___
 ```
 It is possible to add support to other characters such as '!', but you will need to use something like:\
 `echo "1 --left-shift" | /system/xbin/hid-keyboard /dev/hidg0 keyboard`\
-For any modification, I would recomend taking a look at the source code of [hid_gadget_test.c](https://github.com/aagallag/hid_gadget_test/blob/master/hid_gadget_test.c) as it provides all the options at your disposal:\
+For any modification, I would recomend taking a look at the source code of [hid_gadget_test.c](https://github.com/aagallag/hid_gadget_test/blob/master/hid_gadget_test.c) as it shows all the options thath you have at your disposal:
 ```static struct options kmod[] = {
 	{.opt = "--left-ctrl",		.val = 0x01},
 	{.opt = "--right-ctrl",		.val = 0x10},
