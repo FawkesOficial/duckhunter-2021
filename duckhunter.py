@@ -108,7 +108,7 @@ for line in src:
     elif command == "STRING":
         for char in str(argument).replace("\n", ""):
             if char.isupper():
-                dest.write(prefix+char+" --left-shift"+suffix+"\n")
+                dest.write(prefix+char.lower()+" --left-shift"+suffix+"\n")
             elif char.islower() or char.isnumeric():
                 dest.write(prefix+char+suffix+"\n")
             elif char == " ":
