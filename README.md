@@ -7,4 +7,5 @@ Based on the original repo [byt3bl33d3r/duckhunter](https://github.com/byt3bl33d
 
 ```diff
 - NOTE: This script currently only supports characters included in [a-z], [a-Z] and [0-9].
+# It is possible to add support to other character such as '!' but you will need to use something like: `echo "1 --left-shift" | /system/xbin/hid-keyboard /dev/hidg0 keyboard`
 ```
