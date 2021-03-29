@@ -77,7 +77,7 @@ rules = {
     r'DEFAULT_DELAY' : '"sleep', # We need to add this in between each line if it's set. For debugging
     r'REPEAT' : '"'}
 
-prefix = "echo -ne '"
+prefix = "echo '"
 suffix = "' | /system/xbin/hid-keyboard /dev/hidg0 keyboard"
 
 dest.write("#!/system/bin/sh\n\n")
