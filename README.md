@@ -23,8 +23,56 @@ ___
 - NOTE: This script currently only supports characters included in [a-z], [a-Z] and [0-9].
 ```
 It is possible to add support to other characters such as '!', but you will need to use something like:\
-`echo "1 --left-shift" | /system/xbin/hid-keyboard /dev/hidg0 keyboard`
+`echo "1 --left-shift" | /system/xbin/hid-keyboard /dev/hidg0 keyboard`\
+For any modification, I would recomend taking a look at the source code of [hid_gadget_test.c](https://github.com/aagallag/hid_gadget_test/blob/master/hid_gadget_test.c) as it provides all the options at your disposal:\
+```static struct options kmod[] = {
+	{.opt = "--left-ctrl",		.val = 0x01},
+	{.opt = "--right-ctrl",		.val = 0x10},
+	{.opt = "--left-shift",		.val = 0x02},
+	{.opt = "--right-shift",	.val = 0x20},
+	{.opt = "--left-alt",		.val = 0x04},
+	{.opt = "--right-alt",		.val = 0x40},
+	{.opt = "--left-meta",		.val = 0x08},
+	{.opt = "--right-meta",		.val = 0x80},
+	{.opt = NULL}
+};
+
+static struct options kval[] = {
+	{.opt = "--return",	.val = 0x28},
+	{.opt = "--esc",	.val = 0x29},
+	{.opt = "--bckspc",	.val = 0x2a},
+	{.opt = "--tab",	.val = 0x2b},
+	{.opt = "--spacebar",	.val = 0x2c},
+	{.opt = "--caps-lock",	.val = 0x39},
+	{.opt = "--f1",		.val = 0x3a},
+	{.opt = "--f2",		.val = 0x3b},
+	{.opt = "--f3",		.val = 0x3c},
+	{.opt = "--f4",		.val = 0x3d},
+	{.opt = "--f5",		.val = 0x3e},
+	{.opt = "--f6",		.val = 0x3f},
+	{.opt = "--f7",		.val = 0x40},
+	{.opt = "--f8",		.val = 0x41},
+	{.opt = "--f9",		.val = 0x42},
+	{.opt = "--f10",	.val = 0x43},
+	{.opt = "--f11",	.val = 0x44},
+	{.opt = "--f12",	.val = 0x45},
+	{.opt = "--insert",	.val = 0x49},
+	{.opt = "--home",	.val = 0x4a},
+	{.opt = "--pageup",	.val = 0x4b},
+	{.opt = "--del",	.val = 0x4c},
+	{.opt = "--end",	.val = 0x4d},
+	{.opt = "--pagedown",	.val = 0x4e},
+	{.opt = "--right",	.val = 0x4f},
+	{.opt = "--left",	.val = 0x50},
+	{.opt = "--down",	.val = 0x51},
+	{.opt = "--kp-enter",	.val = 0x58},
+	{.opt = "--up",		.val = 0x52},
+	{.opt = "--num-lock",	.val = 0x53},
+	{.opt = NULL}
+};```
 ___
 
 ## Links:
+* [byt3bl33d3r/duckhunter](https://github.com/byt3bl33d3r/duckhunter)
 * [aagallag/hid_gadget_test](https://github.com/aagallag/hid_gadget_test)
+* My Nethunter full build [Coming soon...]
