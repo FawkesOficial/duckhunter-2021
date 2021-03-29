@@ -92,7 +92,9 @@ with tmpfile as result:
     tmpfile.close()
 
 src = open("tmp.txt", "r")
+index = 0
 for line in src:
+    index += 1
     command = line.upper().split(" ")[0]
     argument = " ".join(line.split(" ")[1:])
 
@@ -105,7 +107,21 @@ for line in src:
 
     elif command == "STRING":
         for char in str(argument).replace("\n", ""):
-            dest.write(prefix+char+suffix+"\n")
+            if char.isupper():
+                dest.write(prefix+char+" --left-shift"+suffix+"\n")
+            elif char.islower() or char.isnumeric():
+                dest.write(prefix+char+suffix+"\n")
+            elif char == " ":
+                dest.write(prefix+"space"+suffix+"\n")
+            else:
+                print('[-] Error at line {}: "{}"; "{}" is not a valid character'.format(index, str(argument).replace("\n", ""), char))
+                print("[?] STRING's characters can only be [a-z], [A-Z] or [0-9]")
+                print("[X] Quitting...")
+                src.close()
+                dest.close()
+                os.remove(args.hunterscript)
+                os.remove("tmp.txt")
+                exit()
     
     else:
         dest.write('%s%s%s\n' % (prefix, line.rstrip('\n').strip(), suffix))
