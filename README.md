@@ -10,6 +10,13 @@ Based on the original repo [byt3bl33d3r/duckhunter](https://github.com/byt3bl33d
 * Android Version: 8.1.0
 ---
 
+
+## Links:
+* [byt3bl33d3r/duckhunter](https://github.com/byt3bl33d3r/duckhunter)
+* [aagallag/hid_gadget_test](https://github.com/aagallag/hid_gadget_test)
+* My Nethunter full build [Coming soon...]
+___
+
 ## Why?
 I remade the original DuckHunter script because the current NetHunter App (as of 29/03/2021) doesn't convert STRINGs into Nethunter friendly shell scripts.
 ___
@@ -69,10 +76,6 @@ static struct options kval[] = {
 	{.opt = "--up",		.val = 0x52},
 	{.opt = "--num-lock",	.val = 0x53},
 	{.opt = NULL}
-};```
+};
+```
 ___
-
-## Links:
-* [byt3bl33d3r/duckhunter](https://github.com/byt3bl33d3r/duckhunter)
-* [aagallag/hid_gadget_test](https://github.com/aagallag/hid_gadget_test)
-* My Nethunter full build [Coming soon...]
