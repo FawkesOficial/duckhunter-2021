@@ -80,6 +80,8 @@ rules = {
 prefix = "echo -ne '"
 suffix = "' | /system/xbin/hid-keyboard /dev/hidg0 keyboard"
 
+dest.write("#!/system/bin/sh\n\n")
+
 with infile as text:
 		new_text = duckyRules(text.read())
 		infile.close()
@@ -102,7 +104,8 @@ for line in src.read().split("\n"):
         dest.write(f'echo "{argument}"')
 
     elif command == "STRING":
-        dest.write(prefix+str(argument)+suffix)
+        for char in str(argument):
+            dest.write(prefix+char+suffix)
     
     else:
         dest.write('%s%s%s\n' % (prefix, line.rstrip('\n').strip(), suffix))
