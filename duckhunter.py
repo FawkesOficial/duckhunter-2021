@@ -92,25 +92,23 @@ with tmpfile as result:
     tmpfile.close()
 
 src = open("tmp.txt", "r")
-for line in src.read().split("\n"):
+for line in src:
     command = line.upper().split(" ")[0]
     argument = " ".join(line.split(" ")[1:])
 
     if command == "DELAY" or command == "SLEEP":
         sleep_amount = int(argument) / 1000
-        dest.write(f"sleep {sleep_amount}")
+        dest.write(f"sleep {sleep_amount}\n")
     
     elif command == "REM" or command == "PRINT":
-        dest.write(f'echo "{argument}"')
+        dest.write(f'echo "{argument}"\n')
 
     elif command == "STRING":
-        for char in str(argument):
-            dest.write(prefix+char+suffix)
+        for char in str(argument).replace("\n", ""):
+            dest.write(prefix+char+suffix+"\n")
     
     else:
         dest.write('%s%s%s\n' % (prefix, line.rstrip('\n').strip(), suffix))
-
-    dest.write("\n")
 
 src.close()
 dest.close()
