@@ -26,6 +26,8 @@ Following the documentation of [hid_gadget_test](https://github.com/aagallag/hid
 `echo "{any letter form [a-z]} --left-shift" | /system/xbin/hid-keyboard /dev/hidg0 keyboard`
 ___
 
+## Layouts:
+
 ```diff
 - NOTE: This script currently only supports characters included in [a-z], [a-Z] and [0-9].
 ```
