@@ -22,14 +22,14 @@ I remade the original DuckHunter script because the current NetHunter App (as of
 ___
 
 ## How?
-Following the documentation of [hid_gadget_test](https://github.com/aagallag/hid_gadget_test) I was able to add support to uppercase characters by using:\
-`echo "{any letter form [a-z]} --left-shift" | /system/xbin/hid-keyboard /dev/hidg0 keyboard`
+Following the documentation of [hid_gadget_test](https://github.com/aagallag/hid_gadget_test) I was able to add support to, for example, uppercase characters, by using:\
+`echo "{any letter from [a-z]} --left-shift" | /system/xbin/hid-keyboard /dev/hidg0 keyboard`
 ___
 
-## Layouts:
+## Keyboard Layouts:
 
 ```diff
-- NOTE: This script currently only supports characters included in [a-z], [a-Z] and [0-9].
+- NOTE: This script currently only supports characters included in [a-z], [a-Z], [0-9] and some other special Shift and right-Alt keys for 'us', 'uk' and 'pt' keyboard layouts.
 ```
 It is possible to add support to other characters such as '!', but you will need to use something like:\
 `echo "1 --left-shift" | /system/xbin/hid-keyboard /dev/hidg0 keyboard`\
