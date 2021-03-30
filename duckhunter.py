@@ -2,8 +2,8 @@ import argparse
 import re
 import os
 
-parser = argparse.ArgumentParser(description='Converts USB rubber ducky scripts to a Nethunter format', epilog="Quack Quack")
-#parser.add_argument('-l', type=str, dest='layout', choices=['us', 'fr', 'de', 'es','sv', 'it', 'uk', 'ru','dk','no','pt','be'], help='Keyboard layout')
+parser = argparse.ArgumentParser(description='Converts USB rubber ducky scripts to a Nethunter format', epilog="Made by @FawkesOficial and original code by @byt3bl33d3r\nGithub repo: https://github.com/FawkesOficial/duckhunter-2021", formatter_class=argparse.RawTextHelpFormatter)
+parser.add_argument('-l', type=str, dest='layout', choices=['us', 'uk', 'pt'], help='Keyboard layout')
 parser.add_argument('duckyscript', help='Ducky script to convert')
 parser.add_argument('hunterscript', help='Output script')
 
@@ -13,6 +13,20 @@ args = parser.parse_args()
 infile = open(args.duckyscript)
 dest = open(args.hunterscript, 'w')
 tmpfile = open("tmp.txt", "w")
+
+def crash(**extra_chars):
+    print('[-] Error at line {}: "{}"; "{}" is not a valid character'.format(index, str(argument).replace("\n", ""), char))
+    if extra_chars:
+        print("[?] STRING's characters can only be [a-z], [A-Z], [0-9] or {}".format(extra_chars))
+    else:
+        print("[?] STRING's characters can only be [a-z], [A-Z] or [0-9] for layouts other than 'pt', 'us', 'uk'")
+        print("[?] For support for additional characters, please visit the Github repo: https://github.com/FawkesOficial/duckhunter-2021")
+    print("[X] Quitting...")
+    src.close()
+    dest.close()
+    #os.remove(args.hunterscript)
+    os.remove("tmp.txt")
+    exit()
 
 def duckyRules(source):
 
@@ -112,36 +126,65 @@ for line in src:
             elif char == " ":
                 dest.write(prefix+"space"+suffix+"\n")
             
-            elif char == r'!':
-                dest.write(prefix+'1 --left-shift'+suffix+"\n")
-            elif char == r'"':
-                dest.write(prefix+'2 --left-shift'+suffix+"\n")
-            elif char == r'#':
-                dest.write(prefix+'3 --left-shift'+suffix+"\n")
-            elif char == r'$':
-                dest.write(prefix+'4 --left-shift'+suffix+"\n")
-            elif char == r'%':
-                dest.write(prefix+'5 --left-shift'+suffix+"\n")
-            elif char == r'&':
-                dest.write(prefix+'6 --left-shift'+suffix+"\n")
-            elif char == r'/':
-                dest.write(prefix+'7 --left-shift'+suffix+"\n")
-            elif char == r'(':
-                dest.write(prefix+'8 --left-shift'+suffix+"\n")
-            elif char == r')':
-                dest.write(prefix+'9 --left-shift'+suffix+"\n")
-            elif char == r'=':
-                dest.write(prefix+'0 --left-shift'+suffix+"\n")
+            elif args.layout == "pt":
+                if char == r'!': dest.write(prefix+'1 --left-shift'+suffix+"\n")
+                elif char == r'"': dest.write(prefix+'2 --left-shift'+suffix+"\n")
+                elif char == r'#': dest.write(prefix+'3 --left-shift'+suffix+"\n")
+                elif char == r'$': dest.write(prefix+'4 --left-shift'+suffix+"\n")
+                elif char == r'%': dest.write(prefix+'5 --left-shift'+suffix+"\n")
+                elif char == r'&': dest.write(prefix+'6 --left-shift'+suffix+"\n")
+                elif char == r'/': dest.write(prefix+'7 --left-shift'+suffix+"\n")
+                elif char == r'(': dest.write(prefix+'8 --left-shift'+suffix+"\n")
+                elif char == r')': dest.write(prefix+'9 --left-shift'+suffix+"\n")
+                elif char == r'=': dest.write(prefix+'0 --left-shift'+suffix+"\n")
+
+                elif char == r'@': dest.write(prefix+'2 --right-alt'+suffix+"\n")
+                elif char == r'£': dest.write(prefix+'3 --right-alt'+suffix+"\n")
+                elif char == r'§': dest.write(prefix+'4 --right-alt'+suffix+"\n")
+                elif char == r'{': dest.write(prefix+'7 --right-alt'+suffix+"\n")
+                elif char == r'[': dest.write(prefix+'8 --right-alt'+suffix+"\n")
+                elif char == r']': dest.write(prefix+'9 --right-alt'+suffix+"\n")
+                elif char == r'}': dest.write(prefix+'0 --right-alt'+suffix+"\n")
+                
+                elif char == r'€': dest.write(prefix+'e --right-alt'+suffix+"\n")
+
+                else:
+                    crash(extra_chars=["!", '"', "#", "$", "%", "&", "/", "(", ")", "=", "@", "£", "§", "{", "}", "[", "]", "€"])
+
+            elif args.layout == "us":
+                if char == r'!': dest.write(prefix+'1 --left-shift'+suffix+"\n")
+                elif char == r'@': dest.write(prefix+'2 --left-shift'+suffix+"\n")
+                elif char == r'#': dest.write(prefix+'3 --left-shift'+suffix+"\n")
+                elif char == r'$': dest.write(prefix+'4 --left-shift'+suffix+"\n")
+                elif char == r'%': dest.write(prefix+'5 --left-shift'+suffix+"\n")
+                elif char == r'^': dest.write(prefix+'6 --left-shift'+suffix+"\n")
+                elif char == r'&': dest.write(prefix+'7 --left-shift'+suffix+"\n")
+                elif char == r'*': dest.write(prefix+'8 --left-shift'+suffix+"\n")
+                elif char == r'(': dest.write(prefix+'9 --left-shift'+suffix+"\n")
+                elif char == r')': dest.write(prefix+'0 --left-shift'+suffix+"\n")
+
+                else:
+                    crash(extra_chars=["!", "@", "#", "$", "%", "^", "&", "*", "(", ")"])
+
+            elif args.layout == "uk":
+                if char == r'!': dest.write(prefix+'1 --left-shift'+suffix+"\n")
+                elif char == r'"': dest.write(prefix+'2 --left-shift'+suffix+"\n")
+                elif char == r'£': dest.write(prefix+'3 --left-shift'+suffix+"\n")
+                elif char == r'$': dest.write(prefix+'4 --left-shift'+suffix+"\n")
+                elif char == r'%': dest.write(prefix+'5 --left-shift'+suffix+"\n")
+                elif char == r'^': dest.write(prefix+'6 --left-shift'+suffix+"\n")
+                elif char == r'&': dest.write(prefix+'7 --left-shift'+suffix+"\n")
+                elif char == r'*': dest.write(prefix+'8 --left-shift'+suffix+"\n")
+                elif char == r'(': dest.write(prefix+'9 --left-shift'+suffix+"\n")
+                elif char == r')': dest.write(prefix+'0 --left-shift'+suffix+"\n")
+
+                elif char == r'€': dest.write(prefix+'4 --right-alt'+suffix+"\n")
+
+                else:
+                    crash(extra_chars=["!", '"', "£", "$", "%", "^", "&", "*", "(", ")", "€"])
 
             else:
-                print('[-] Error at line {}: "{}"; "{}" is not a valid character'.format(index, str(argument).replace("\n", ""), char))
-                print("[?] STRING's characters can only be [a-z], [A-Z] or [0-9]")
-                print("[X] Quitting...")
-                src.close()
-                dest.close()
-                os.remove(args.hunterscript)
-                os.remove("tmp.txt")
-                exit()
+                crash()
     
     else:
         dest.write('%s%s%s\n' % (prefix, line.rstrip('\n').strip(), suffix))
@@ -149,4 +192,4 @@ for line in src:
 src.close()
 dest.close()
 os.remove("tmp.txt")
-print("File saved to location: " + (args.hunterscript))
+print("[+] File saved to location: " + (args.hunterscript))
