@@ -29,7 +29,8 @@ ___
 ## Keyboard Layouts:
 
 ```diff
-- NOTE: This script currently only supports characters included in [a-z], [a-Z], [0-9] and some other special Shift and right-Alt keys for 'us', 'uk' and 'pt' keyboard layouts.
+- NOTE: This script currently only supports characters included in [a-z], [a-Z], [0-9]
+- and some other special Shift and right-Alt keys for 'us', 'uk' and 'pt' keyboard layouts.
 ```
 It is possible to add support to other characters such as '!', but you will need to use something like:\
 `echo "1 --left-shift" | /system/xbin/hid-keyboard /dev/hidg0 keyboard`\
