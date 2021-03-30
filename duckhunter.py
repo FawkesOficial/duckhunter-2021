@@ -24,8 +24,7 @@ def duckyRules(source):
 
 	return tmpfile
 
-rules = { 
-    r'ALT' : u'left-alt',
+rules = {
     r'GUI' : 'left-meta',
     r'WINDOWS' : 'left-meta',
     r'COMMAND' : 'left-meta',
@@ -40,7 +39,6 @@ rules = {
     r'END' : 'end',
     r'SPACE' : 'space',
     r'TAB' : 'tab',
-    r'PRINTSCREEN' : 'print',
     r'ENTER' : 'enter',
     r'UPARROW' : 'up',
     r'UP' : 'up',
@@ -113,6 +111,28 @@ for line in src:
                 dest.write(prefix+char+suffix+"\n")
             elif char == " ":
                 dest.write(prefix+"space"+suffix+"\n")
+            
+            elif char == r'!':
+                dest.write(prefix+'1 --left-shift'+suffix+"\n")
+            elif char == r'"':
+                dest.write(prefix+'2 --left-shift'+suffix+"\n")
+            elif char == r'#':
+                dest.write(prefix+'3 --left-shift'+suffix+"\n")
+            elif char == r'$':
+                dest.write(prefix+'4 --left-shift'+suffix+"\n")
+            elif char == r'%':
+                dest.write(prefix+'5 --left-shift'+suffix+"\n")
+            elif char == r'&':
+                dest.write(prefix+'6 --left-shift'+suffix+"\n")
+            elif char == r'/':
+                dest.write(prefix+'7 --left-shift'+suffix+"\n")
+            elif char == r'(':
+                dest.write(prefix+'8 --left-shift'+suffix+"\n")
+            elif char == r')':
+                dest.write(prefix+'9 --left-shift'+suffix+"\n")
+            elif char == r'=':
+                dest.write(prefix+'0 --left-shift'+suffix+"\n")
+
             else:
                 print('[-] Error at line {}: "{}"; "{}" is not a valid character'.format(index, str(argument).replace("\n", ""), char))
                 print("[?] STRING's characters can only be [a-z], [A-Z] or [0-9]")
