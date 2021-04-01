@@ -14,7 +14,7 @@ Based on the original repo [byt3bl33d3r/duckhunter](https://github.com/byt3bl33d
 ## Links:
 * [byt3bl33d3r/duckhunter](https://github.com/byt3bl33d3r/duckhunter)
 * [aagallag/hid_gadget_test](https://github.com/aagallag/hid_gadget_test)
-* My Nethunter full build guide [Coming soon...]
+* My Nethunter full build guide: [FawkesOficial/NethunterBuild-RedmiNote4-mido](https://github.com/FawkesOficial/NethunterBuild-RedmiNote4-mido)
 ___
 
 ## Why?
